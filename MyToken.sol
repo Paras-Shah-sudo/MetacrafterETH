@@ -23,18 +23,20 @@ contract MyToken {
     uint public supply = 1000;
 
     // mapping variable here
-    mapping(address => uint) public balances;
+    mapping(address => uint) balances;
 
     // mint function
     function mint(address addr, uint value) public {
-        supply += value;
-        balances[addr] += value;
+        if(supply >= value) {
+            supply -= value;
+            balances[addr] += value;
+        }
     }
 
     // burn function
     function burn(address addr, uint value) public {
-        supply -= value;
         if(balances[addr] >= value) {
+            supply += value;
             balances[addr] -= value;
         }
     }
