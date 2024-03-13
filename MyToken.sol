@@ -23,7 +23,7 @@ contract MyToken {
     uint public supply = 1000;
 
     // mapping variable here
-    mapping(address => uint) balances;
+    mapping(address => uint) public balances;
 
     // mint function
     function mint(address addr, uint value) public {
